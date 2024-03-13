@@ -48,7 +48,7 @@ class StockDataProcessor:
 
     # Function for calculating returns
     def calculate_returns(self, sub_data):
-        sub_data['Price_Return'] = sub_data['Adj Close'].pct_change()
+        sub_data['Price_Return'] = sub_data['Close'].pct_change()
         sub_data['Volume_Return'] = sub_data['Volume'].pct_change()
         return sub_data
     
