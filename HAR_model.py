@@ -9,7 +9,7 @@ class HARModel:
     def __init__(
         self,
         raw_data, # 5-min data sample without any changes
-        future=1,
+        future= 1,
         lags=[4, 20,],
         feature="RV",
         semi_variance=False,
@@ -101,7 +101,7 @@ class HARModel:
 
         tmp['RV_m']= (rm - rw) /  (self.lags[1]- self.lags[0])
 
-        tmp.drop([self.feature], axis=1, inplace=True)
+        # tmp.drop([self.feature], axis=1, inplace=True)
 
         return  tmp
 
@@ -125,8 +125,8 @@ class HARModel:
 
         df_help = pd.DataFrame()
 
-        for i in range(self.future):
-            df_help[str(i)] = data.RV_t.shift(-(1 + i))
+        for x in range(self.future):
+            df_help[str(x)] = data.RV_t.shift(-(1 + x))
         df_help = df_help.dropna()
 
         self.output_dataset = self.lag_average(log_transform=self.log_transformation)
