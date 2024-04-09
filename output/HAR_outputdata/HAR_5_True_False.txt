@@ -1,0 +1,42 @@
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}    &      Target      & \textbf{  R-squared:         } &     0.736   \\
+\textbf{Model:}            &       OLS        & \textbf{  Adj. R-squared:    } &     0.735   \\
+\textbf{Method:}           &  Least Squares   & \textbf{  F-statistic:       } &     23.74   \\
+\textbf{Date:}             & Tue, 09 Apr 2024 & \textbf{  Prob (F-statistic):} &  4.01e-19   \\
+\textbf{Time:}             &     21:53:35     & \textbf{  Log-Likelihood:    } &    13104.   \\
+\textbf{No. Observations:} &        1682      & \textbf{  AIC:               } & -2.620e+04  \\
+\textbf{Df Residuals:}     &        1677      & \textbf{  BIC:               } & -2.617e+04  \\
+\textbf{Df Model:}         &           4      & \textbf{                     } &             \\
+\textbf{Covariance Type:}  &       HAC        & \textbf{                     } &             \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                   & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept} &     1.05e-05  &        7e-06     &     1.499  &         0.134        &    -3.24e-06    &     2.42e-05     \\
+\textbf{RVp}       &       0.2118  &        0.199     &     1.062  &         0.288        &       -0.179    &        0.603     \\
+\textbf{RVn}       &       0.6037  &        0.213     &     2.833  &         0.005        &        0.186    &        1.022     \\
+\textbf{RV\_w}     &       0.2967  &        0.167     &     1.779  &         0.075        &       -0.030    &        0.624     \\
+\textbf{RV\_m}     &       0.1910  &        0.188     &     1.016  &         0.310        &       -0.178    &        0.560     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 1242.713 & \textbf{  Durbin-Watson:     } &     0.465   \\
+\textbf{Prob(Omnibus):} &   0.000  & \textbf{  Jarque-Bera (JB):  } & 212304.967  \\
+\textbf{Skew:}          &   2.524  & \textbf{  Prob(JB):          } &      0.00   \\
+\textbf{Kurtosis:}      &  57.807  & \textbf{  Cond. No.          } &  2.36e+04   \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors are heteroscedasticity and autocorrelation robust (HAC) using 8 lags and without small sample correction \newline
+ [2] The condition number is large, 2.36e+04. This might indicate that there are \newline
+ strong multicollinearity or other numerical problems. 
+Train Accuracy 
+{'MSE': 1.00094274013234e-08, 'MAE': 3.527545477966476e-05, 'RSquared': 0.7359665094209414} 
+Test Accuracy 
+{'MSE': 8.811250356914584e-10, 'MAE': 1.7342797228983036e-05, 'RSquared': 0.6962840322206985} 

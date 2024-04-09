@@ -1,0 +1,39 @@
+\begin{center}
+\begin{tabular}{lclc}
+\toprule
+\textbf{Dep. Variable:}    &      Target      & \textbf{  R-squared:         } &     0.793   \\
+\textbf{Model:}            &       OLS        & \textbf{  Adj. R-squared:    } &     0.793   \\
+\textbf{Method:}           &  Least Squares   & \textbf{  F-statistic:       } &     1860.   \\
+\textbf{Date:}             & Tue, 09 Apr 2024 & \textbf{  Prob (F-statistic):} &     0.00    \\
+\textbf{Time:}             &     21:53:34     & \textbf{  Log-Likelihood:    } &   -1095.0   \\
+\textbf{No. Observations:} &        1682      & \textbf{  AIC:               } &     2198.   \\
+\textbf{Df Residuals:}     &        1678      & \textbf{  BIC:               } &     2220.   \\
+\textbf{Df Model:}         &           3      & \textbf{                     } &             \\
+\textbf{Covariance Type:}  &       HAC        & \textbf{                     } &             \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lcccccc}
+                   & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
+\midrule
+\textbf{Intercept} &      -0.3681  &        0.134     &    -2.739  &         0.006        &       -0.632    &       -0.105     \\
+\textbf{RV\_t}     &       0.5033  &        0.026     &    19.577  &         0.000        &        0.453    &        0.554     \\
+\textbf{RV\_w}     &       0.3577  &        0.034     &    10.573  &         0.000        &        0.291    &        0.424     \\
+\textbf{RV\_m}     &       0.1021  &        0.026     &     3.876  &         0.000        &        0.050    &        0.154     \\
+\bottomrule
+\end{tabular}
+\begin{tabular}{lclc}
+\textbf{Omnibus:}       & 37.659 & \textbf{  Durbin-Watson:     } &    2.041  \\
+\textbf{Prob(Omnibus):} &  0.000 & \textbf{  Jarque-Bera (JB):  } &   78.688  \\
+\textbf{Skew:}          &  0.058 & \textbf{  Prob(JB):          } & 8.19e-18  \\
+\textbf{Kurtosis:}      &  4.053 & \textbf{  Cond. No.          } &     194.  \\
+\bottomrule
+\end{tabular}
+%\caption{OLS Regression Results}
+\end{center}
+
+Notes: \newline
+ [1] Standard Errors are heteroscedasticity and autocorrelation robust (HAC) using 0 lags and without small sample correction 
+Train Accuracy 
+{'MSE': 1.3737214647989866e-08, 'MAE': 3.6000281196042824e-05, 'RSquared': 0.7026138559239611} 
+Test Accuracy 
+{'MSE': 1.5212080637706158e-09, 'MAE': 1.909334615209671e-05, 'RSquared': 0.6094797940759549} 
