@@ -219,8 +219,8 @@ class DataPreparationLSTM:
 class LSTM:
     def __init__(
         self,
-        training_set,
-        testing_set,
+        #training_set,
+        #testing_set,
         train_matrix,
         train_y,
         test_matrix,
@@ -233,8 +233,8 @@ class LSTM:
         layer_three=0,
         layer_four=0,
     ):
-        self.training_set = training_set
-        self.testing_set = testing_set
+        #self.training_set = training_set
+        #self.testing_set = testing_set
         self.train_matrix = train_matrix
         self.train_y = train_y
         self.test_matrix = test_matrix
@@ -344,27 +344,27 @@ class LSTM:
     def make_accuracy_measures(self):
         if self.prediction_test is None:
             self.predict_lstm()
-
+        
         test_accuracy = {
             "MSE": metrics.mean_squared_error(
-                self.testing_set["Target"], self.prediction_test
+                self.test_y, self.prediction_test
             ),
             "MAE": metrics.mean_absolute_error(
-                self.testing_set["Target"], self.prediction_test
+                self.test_y, self.prediction_test
             ),
             "RSquared": metrics.r2_score(
-                self.testing_set["Target"], self.prediction_test
+                self.test_y, self.prediction_test
             ),
         }
         train_accuracy = {
             "MSE": metrics.mean_squared_error(
-                self.training_set["Target"], self.prediction_train
+                self.train_y, self.prediction_train
             ),
             "MAE": metrics.mean_absolute_error(
-                self.training_set["Target"], self.prediction_train
+                self.train_y, self.prediction_train
             ),
             "RSquared": metrics.r2_score(
-                self.training_set["Target"], self.prediction_train
+                self.train_y, self.prediction_train
             ),
         }
 

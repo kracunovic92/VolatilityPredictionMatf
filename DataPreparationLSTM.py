@@ -103,6 +103,8 @@ class DataPreparationLSTM:
 
         self.df = data
 
+    '''
+    #Wrong
     def data_scaling(self):
 
         if self.log_transform:
@@ -123,6 +125,8 @@ class DataPreparationLSTM:
                     self.df['RVn'].values.reshape(-1, 1)
                 )
 
+    '''
+                
     def future_averages(self):
 
         data = self.df[["RV"]].copy()
@@ -148,13 +152,19 @@ class DataPreparationLSTM:
 
         self.historical_values = df
 
+    def back_transformation(self, data):
+        if self.log_transform:
+            if self.min_max_scaler:
+                return np.exp(self.applied_scaler_targets.inverse_transform(data))
+        else:
+            if self.min_max_scaler:
+                return self.applied_scaler_targets.inverse_transform(data)
     
     def generate_dataset(self):
 
         self.jump_detection()  # outliers
-
         self.future_averages() # targets
-
+        '''
         if self.log_transform: # here is the problemos (maybe)
             self.future_values["Target"] = np.log(self.future_values["Target"])
             s_targets = MinMaxScaler()
@@ -162,8 +172,16 @@ class DataPreparationLSTM:
             self.future_values["Target"] = s_targets.fit_transform(
                 self.future_values["Target"].values.reshape(-1, 1)
             )
-
-        self.data_scaling()  # data scaling after future value generation
+        '''
+        
+        if self.log_transform:
+            self.future_values['Target'] = np.log(self.future_values['Target'])
+            self.df['RV'] = np.log(self.df['RV'])
+            if self.semi_variance:
+                self.df['RVp'] = np.log(self.df['RVp'])
+                self.df['RVn'] = np.log(self.df['RVn'])
+        
+        # self.data_scaling()  # data scaling after future value generation
         self.historical_lag_transformation()
 
         # merging the two data sets
@@ -186,10 +204,10 @@ class DataPreparationLSTM:
         data = self.df_processed_data.copy()
         data.index = pd.to_datetime(data.index, format = "%Y-%m-%d")
 
-        data_train = data.loc[(data.index >= self.period_train[0]) &(data.index <= self.period_train[1])].reset_index(drop= True)
-        data_validation = data.loc[(data.index >= self.period_validation[0])& (data.index <= self.period_validation[1])].reset_index(drop= True)
-        data_test = data.loc[(data.index >= self.period_test[0]) &(data.index <= self.period_test[1])].reset_index(drop = True)
-
+        data_train = data.loc[(data.index >= self.period_train[0]) &(data.index <= self.period_train[1])]
+        data_validation = data.loc[(data.index >= self.period_validation[0])& (data.index <= self.period_validation[1])]
+        data_test = data.loc[(data.index >= self.period_test[0]) &(data.index <= self.period_test[1])]
+        
 
         self.validation_set = data_validation
         self.training_set = data_train
@@ -198,14 +216,31 @@ class DataPreparationLSTM:
 
     def generate_validation_split(self):
 
-        self.x_train = self.training_set.drop(columns={"Target"}).values
-        self.y_train = self.training_set[["Target"]].values
+        x_train = self.training_set.drop(columns={"Target"}).values
+        y_train = self.training_set[["Target"]].values
 
-        self.x_val = self.validation_set.drop(columns = {"Target"}.values)
-        self.y_val = self.validation_set[['Target']].values
+        x_val = self.validation_set.drop(columns = {"Target"}).values
+        y_val = self.validation_set[['Target']].values
 
-        self.x_test = self.testing_set.drop(columns={"Target"}).values
-        self.y_test = self.testing_set[["Target"]].values
+        x_test = self.testing_set.drop(columns={"Target"}).values
+        y_test = self.testing_set[["Target"]].values
+
+        if self.min_max_scaler:
+            sc_features = MinMaxScaler()
+            sc_target = MinMaxScaler()
+            sc_features.fit(x_train)
+            sc_target.fit(y_train)
+            self.applied_scaler_features = sc_features
+            self.applied_scaler_targets = sc_target
+            self.x_train = sc_features.transform(x_train)
+            self.x_val = sc_features.transform(x_val)
+            self.x_test = sc_features.transform(x_test)
+            
+            self.y_train = sc_target.transform(y_train)
+            self.y_val = sc_target.transform(y_val)
+            self.y_test = sc_target.transform(y_test)
+
+            
 
         n_features = 1
 
