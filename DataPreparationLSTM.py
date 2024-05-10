@@ -5,6 +5,7 @@ import random
 from sklearn.preprocessing import normalize
 from sklearn.preprocessing import MinMaxScaler
 import tensorflow as tf
+from sklearn.model_selection import TimeSeriesSplit
 
 
 class DataPreparationLSTM:
@@ -52,12 +53,13 @@ class DataPreparationLSTM:
         self.training_set = None  # data frames
         self.testing_set = None  # data frames
         self.validation_set = None
-        self.train_matrix = None
-        self.validation_matrix = None
-        self.validation_y = None
-        self.train_y = None
-        self.test_matrix = None
-        self.test_y = None
+        self.x_train = None
+        self.y_train = None
+        self.x_val = None
+        self.y_val = None
+        self.x_test = None
+        self.y_test = None
+        self.splits = None
         self.future_values = None
         self.historical_values = None
         self.df_processed_data = None,
@@ -196,36 +198,75 @@ class DataPreparationLSTM:
 
     def generate_validation_split(self):
 
-        self.train_matrix = self.training_set.drop(columns={"Target"}).values
-        self.train_y = self.training_set[["Target"]].values
+        self.x_train = self.training_set.drop(columns={"Target"}).values
+        self.y_train = self.training_set[["Target"]].values
 
-        self.validation_matrix = self.validation_set.drop(columns = {"Target"}.values)
-        self.validation_y = self.validation_set[['Target']].values
+        self.x_val = self.validation_set.drop(columns = {"Target"}.values)
+        self.y_val = self.validation_set[['Target']].values
 
-        self.test_matrix = self.testing_set.drop(columns={"Target"}).values
-        self.test_y = self.testing_set[["Target"]].values
+        self.x_test = self.testing_set.drop(columns={"Target"}).values
+        self.y_test = self.testing_set[["Target"]].values
 
         n_features = 1
 
-        train_shape_rows = self.train_matrix.shape[0]
-        train_shape_columns = self.train_matrix.shape[1]
+        train_shape_rows = self.x_train.shape[0]
+        train_shape_columns = self.x_train.shape[1]
 
-        self.train_matrix = self.train_matrix.reshape(
+        self.x_train = self.x_train.reshape(
             (train_shape_rows, train_shape_columns, n_features)
         )
-        validation_shape_rows = self.validation_matrix.shape[0]
-        validation_shape_columns = self.validation_matrix.shape[1]
+        validation_shape_rows = self.x_val.shape[0]
+        validation_shape_columns = self.x_val.shape[1]
 
-        self.validation_matrix = self.validation_matrix.reshape(
+        self.x_val = self.x_val.reshape(
             (validation_shape_rows, validation_shape_columns, n_features)
         )
 
-        test_shape_rows = self.test_matrix.shape[0]
-        test_shape_columns = self.train_matrix.shape[1]
+        test_shape_rows = self.x_test.shape[0]
+        test_shape_columns = self.x_train.shape[1]
 
-        self.test_matrix = self.test_matrix.reshape(
+        self.x_test = self.x_test.reshape(
             (test_shape_rows, test_shape_columns, n_features)
         )
+
+    def generate_splits(self):
+        
+        tscv = TimeSeriesSplit(n_splits=5)
+
+        folds = []
+
+        fold_indices = []
+
+        validation_x = self.x_val.copy()
+        validation_y = self.y_val.copy()
+
+        train_x = self.x_train.copy()
+        train_y = self.y_train.copy()
+
+        for train_idx, test_idx in tscv.split(validation_x):
+            fold_indices.append((train_idx, test_idx))
+
+
+        for fold, (train_idx, test_idx) in enumerate(fold_indices):
+            # Combine the training data and previous validation folds for training
+            if fold > 0:
+                train_combined_x = np.concatenate([train_x, validation_x[:test_idx[0]]])
+                train_combined_y = np.concatenate([train_y, validation_y[:test_idx[0]]])
+            else:
+                train_combined_x = train_x  # Use only train_data for the first fold
+                train_combined_y = train_y  # Use only train_data for the first fold
+
+            # Use validation_data[test_idx] as the testing data for this fold
+            test_data_x = validation_x[test_idx]
+            test_data_y = validation_y[test_idx]
+
+            folds.append([train_combined_x, train_combined_y, test_data_x, test_data_y])
+
+
+        self.splits = folds
+
+        
+
 
 
     def prepare_all(self):
@@ -235,5 +276,8 @@ class DataPreparationLSTM:
         if self.training_set is None:
             self.generate_training_test_split()
 
-        if self.train_matrix is None:
+        if self.x_train is None:
             self.generate_validation_split()
+
+        if self.splits is None:
+            self.generate_splits()
