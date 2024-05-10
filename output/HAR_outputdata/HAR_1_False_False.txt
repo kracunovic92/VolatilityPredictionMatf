@@ -1,13 +1,13 @@
 \begin{center}
 \begin{tabular}{lclc}
 \toprule
-\textbf{Dep. Variable:}    &      Target      & \textbf{  R-squared:         } &      0.725   \\
-\textbf{Model:}            &       OLS        & \textbf{  Adj. R-squared:    } &      0.725   \\
-\textbf{Method:}           &  Least Squares   & \textbf{  F-statistic:       } &      66.98   \\
-\textbf{Date:}             & Tue, 09 Apr 2024 & \textbf{  Prob (F-statistic):} &   6.60e-41   \\
-\textbf{Time:}             &     21:53:35     & \textbf{  Log-Likelihood:    } &     12905.   \\
-\textbf{No. Observations:} &        1682      & \textbf{  AIC:               } &  -2.580e+04  \\
-\textbf{Df Residuals:}     &        1678      & \textbf{  BIC:               } &  -2.578e+04  \\
+\textbf{Dep. Variable:}    &      Target      & \textbf{  R-squared:         } &      0.724   \\
+\textbf{Model:}            &       OLS        & \textbf{  Adj. R-squared:    } &      0.724   \\
+\textbf{Method:}           &  Least Squares   & \textbf{  F-statistic:       } &      73.31   \\
+\textbf{Date:}             & Sun, 05 May 2024 & \textbf{  Prob (F-statistic):} &   2.17e-45   \\
+\textbf{Time:}             &     09:06:39     & \textbf{  Log-Likelihood:    } &     19081.   \\
+\textbf{No. Observations:} &        2438      & \textbf{  AIC:               } &  -3.815e+04  \\
+\textbf{Df Residuals:}     &        2434      & \textbf{  BIC:               } &  -3.813e+04  \\
 \textbf{Df Model:}         &           3      & \textbf{                     } &              \\
 \textbf{Covariance Type:}  &       HAC        & \textbf{                     } &              \\
 \bottomrule
@@ -15,17 +15,17 @@
 \begin{tabular}{lcccccc}
                    & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
 \midrule
-\textbf{Intercept} &    5.556e-06  &     4.89e-06     &     1.136  &         0.256        &    -4.04e-06    &     1.52e-05     \\
-\textbf{RV\_t}     &       0.5813  &        0.087     &     6.661  &         0.000        &        0.410    &        0.752     \\
-\textbf{RV\_w}     &       0.2366  &        0.113     &     2.097  &         0.036        &        0.015    &        0.458     \\
-\textbf{RV\_m}     &       0.1262  &        0.104     &     1.212  &         0.226        &       -0.078    &        0.330     \\
+\textbf{Intercept} &    4.798e-06  &     4.21e-06     &     1.139  &         0.255        &    -3.46e-06    &     1.31e-05     \\
+\textbf{RV\_t}     &       0.5804  &        0.082     &     7.074  &         0.000        &        0.419    &        0.741     \\
+\textbf{RV\_w}     &       0.2350  &        0.107     &     2.201  &         0.028        &        0.026    &        0.444     \\
+\textbf{RV\_m}     &       0.1289  &        0.099     &     1.305  &         0.192        &       -0.065    &        0.323     \\
 \bottomrule
 \end{tabular}
 \begin{tabular}{lclc}
-\textbf{Omnibus:}       & 2281.325 & \textbf{  Durbin-Watson:     } &      2.068   \\
-\textbf{Prob(Omnibus):} &   0.000  & \textbf{  Jarque-Bera (JB):  } & 1271114.368  \\
-\textbf{Skew:}          &   7.116  & \textbf{  Prob(JB):          } &       0.00   \\
-\textbf{Kurtosis:}      & 136.920  & \textbf{  Cond. No.          } &   1.27e+04   \\
+\textbf{Omnibus:}       & 3499.168 & \textbf{  Durbin-Watson:     } &      2.059   \\
+\textbf{Prob(Omnibus):} &   0.000  & \textbf{  Jarque-Bera (JB):  } & 3055461.051  \\
+\textbf{Skew:}          &   7.932  & \textbf{  Prob(JB):          } &       0.00   \\
+\textbf{Kurtosis:}      & 175.704  & \textbf{  Cond. No.          } &   1.49e+04   \\
 \bottomrule
 \end{tabular}
 %\caption{OLS Regression Results}
@@ -33,9 +33,9 @@
 
 Notes: \newline
  [1] Standard Errors are heteroscedasticity and autocorrelation robust (HAC) using 0 lags and without small sample correction \newline
- [2] The condition number is large, 1.27e+04. This might indicate that there are \newline
+ [2] The condition number is large, 1.49e+04. This might indicate that there are \newline
  strong multicollinearity or other numerical problems. 
 Train Accuracy 
-{'MSE': 1.2693210163127816e-08, 'MAE': 3.641172000925452e-05, 'RSquared': 0.7252146870317902} 
+{'MSE': 9.322322111047433e-09, 'MAE': 3.21782075399625e-05, 'RSquared': 0.7243643620989295} 
 Test Accuracy 
-{'MSE': 1.481201843615925e-09, 'MAE': 2.0490529513862183e-05, 'RSquared': 0.6197500770866347} 
+{'MSE': 9.83376573828841e-10, 'MAE': 1.744371890918247e-05, 'RSquared': 0.6334427572017116} 

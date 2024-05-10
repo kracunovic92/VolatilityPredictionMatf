@@ -1,13 +1,13 @@
 \begin{center}
 \begin{tabular}{lclc}
 \toprule
-\textbf{Dep. Variable:}    &      Target      & \textbf{  R-squared:         } &     0.793   \\
-\textbf{Model:}            &       OLS        & \textbf{  Adj. R-squared:    } &     0.793   \\
-\textbf{Method:}           &  Least Squares   & \textbf{  F-statistic:       } &     1860.   \\
-\textbf{Date:}             & Tue, 09 Apr 2024 & \textbf{  Prob (F-statistic):} &     0.00    \\
-\textbf{Time:}             &     21:53:34     & \textbf{  Log-Likelihood:    } &   -1095.0   \\
-\textbf{No. Observations:} &        1682      & \textbf{  AIC:               } &     2198.   \\
-\textbf{Df Residuals:}     &        1678      & \textbf{  BIC:               } &     2220.   \\
+\textbf{Dep. Variable:}    &      Target      & \textbf{  R-squared:         } &     0.756   \\
+\textbf{Model:}            &       OLS        & \textbf{  Adj. R-squared:    } &     0.756   \\
+\textbf{Method:}           &  Least Squares   & \textbf{  F-statistic:       } &     2389.   \\
+\textbf{Date:}             & Sun, 05 May 2024 & \textbf{  Prob (F-statistic):} &     0.00    \\
+\textbf{Time:}             &     09:06:39     & \textbf{  Log-Likelihood:    } &   -1825.6   \\
+\textbf{No. Observations:} &        2438      & \textbf{  AIC:               } &     3659.   \\
+\textbf{Df Residuals:}     &        2434      & \textbf{  BIC:               } &     3682.   \\
 \textbf{Df Model:}         &           3      & \textbf{                     } &             \\
 \textbf{Covariance Type:}  &       HAC        & \textbf{                     } &             \\
 \bottomrule
@@ -15,17 +15,17 @@
 \begin{tabular}{lcccccc}
                    & \textbf{coef} & \textbf{std err} & \textbf{t} & \textbf{P$> |$t$|$} & \textbf{[0.025} & \textbf{0.975]}  \\
 \midrule
-\textbf{Intercept} &      -0.3681  &        0.134     &    -2.739  &         0.006        &       -0.632    &       -0.105     \\
-\textbf{RV\_t}     &       0.5033  &        0.026     &    19.577  &         0.000        &        0.453    &        0.554     \\
-\textbf{RV\_w}     &       0.3577  &        0.034     &    10.573  &         0.000        &        0.291    &        0.424     \\
-\textbf{RV\_m}     &       0.1021  &        0.026     &     3.876  &         0.000        &        0.050    &        0.154     \\
+\textbf{Intercept} &      -0.4591  &        0.119     &    -3.870  &         0.000        &       -0.692    &       -0.226     \\
+\textbf{RV\_t}     &       0.5487  &        0.021     &    26.107  &         0.000        &        0.508    &        0.590     \\
+\textbf{RV\_w}     &       0.2727  &        0.027     &     9.967  &         0.000        &        0.219    &        0.326     \\
+\textbf{RV\_m}     &       0.1329  &        0.022     &     6.178  &         0.000        &        0.091    &        0.175     \\
 \bottomrule
 \end{tabular}
 \begin{tabular}{lclc}
-\textbf{Omnibus:}       & 37.659 & \textbf{  Durbin-Watson:     } &    2.041  \\
-\textbf{Prob(Omnibus):} &  0.000 & \textbf{  Jarque-Bera (JB):  } &   78.688  \\
-\textbf{Skew:}          &  0.058 & \textbf{  Prob(JB):          } & 8.19e-18  \\
-\textbf{Kurtosis:}      &  4.053 & \textbf{  Cond. No.          } &     194.  \\
+\textbf{Omnibus:}       & 35.794 & \textbf{  Durbin-Watson:     } &    2.019  \\
+\textbf{Prob(Omnibus):} &  0.000 & \textbf{  Jarque-Bera (JB):  } &   60.181  \\
+\textbf{Skew:}          &  0.097 & \textbf{  Prob(JB):          } & 8.55e-14  \\
+\textbf{Kurtosis:}      &  3.745 & \textbf{  Cond. No.          } &     202.  \\
 \bottomrule
 \end{tabular}
 %\caption{OLS Regression Results}
@@ -34,6 +34,6 @@
 Notes: \newline
  [1] Standard Errors are heteroscedasticity and autocorrelation robust (HAC) using 0 lags and without small sample correction 
 Train Accuracy 
-{'MSE': 1.3737214647989866e-08, 'MAE': 3.6000281196042824e-05, 'RSquared': 0.7026138559239611} 
+{'MSE': 1.0269535637381535e-08, 'MAE': 3.166767099909858e-05, 'RSquared': 0.6963578416794922} 
 Test Accuracy 
-{'MSE': 1.5212080637706158e-09, 'MAE': 1.909334615209671e-05, 'RSquared': 0.6094797940759549} 
+{'MSE': 1.0349714410101368e-09, 'MAE': 1.6141334078779933e-05, 'RSquared': 0.6142105802718881} 
