@@ -103,29 +103,6 @@ class DataPreparationLSTM:
 
         self.df = data
 
-    '''
-    #Wrong
-    def data_scaling(self):
-
-        if self.log_transform:
-            self.df['RV'] = np.log(self.df['RV'])
-            if self.semi_variance:
-                self.df['RVp'] = np.log(self.df['RVp'])
-                self.df['RVn'] = np.log(self.df['RVn'])
-
-        if self.min_max_scaler:
-            s = MinMaxScaler()
-            self.applied_scaler_features = s
-            self.df['RV'] = s.fit_transform(self.df['RV'].values.reshape(-1, 1))
-            if self.semi_variance:
-                self.df['RVp'] = s.fit_transform(
-                    self.df['RVp'].values.reshape(-1, 1)
-                )
-                self.df['RVn'] = s.fit_transform(
-                    self.df['RVn'].values.reshape(-1, 1)
-                )
-
-    '''
                 
     def future_averages(self):
 
@@ -164,15 +141,7 @@ class DataPreparationLSTM:
 
         self.jump_detection()  # outliers
         self.future_averages() # targets
-        '''
-        if self.log_transform: # here is the problemos (maybe)
-            self.future_values["Target"] = np.log(self.future_values["Target"])
-            s_targets = MinMaxScaler()
-            self.applied_scaler_targets = s_targets
-            self.future_values["Target"] = s_targets.fit_transform(
-                self.future_values["Target"].values.reshape(-1, 1)
-            )
-        '''
+        
         
         if self.log_transform:
             self.future_values['Target'] = np.log(self.future_values['Target'])
